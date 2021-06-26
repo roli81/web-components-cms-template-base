@@ -1,0 +1,65 @@
+/**
+ * NOTE: consider the following <link rel="preload" href="[url_to_font]"> to prefetch initially displayed fonts
+ */
+
+@font-face {
+    font-family: 'FuturaT';
+    src: url('../fonts/FuturaT/FuturaT-Book.eot');
+    src: url('../fonts/FuturaT/FuturaT-Book.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/FuturaT/FuturaT-Book.woff2') format('woff2'),
+        url('../fonts/FuturaT/FuturaT-Book.woff') format('woff');
+    font-display: block;
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
+    font-family: 'OPTIFutura-ExtraBlackCond';
+    src:url('../fonts/OPTIFutura-ExtraBlackCond/OPTIFutura-ExtraBlackCond.ttf.woff') format('woff'),
+        url('../fonts/OPTIFutura-ExtraBlackCond/OPTIFutura-ExtraBlackCond.ttf.svg#OPTIFutura-ExtraBlackCond') format('svg'),
+        url('../fonts/OPTIFutura-ExtraBlackCond/OPTIFutura-ExtraBlackCond.ttf.eot'),
+        url('../fonts/OPTIFutura-ExtraBlackCond/OPTIFutura-ExtraBlackCond.ttf.eot?#iefix') format('embedded-opentype'); 
+    font-display: block;
+    font-style: normal;
+    font-weight: normal;
+}
+
+/**
+ * ClubConcerts.html see end of body, there is a javascript which goes along with the CSS style
+ * <script type="text/javascript" async src="https://fast.fonts.net/jsapi/2b52b456-d052-418d-8595-f1c46d3439fb.js"></script>
+ * The contents below are taken from: <link href="https://fast.fonts.net/cssapi/2b52b456-d052-418d-8595-f1c46d3439fb.css" rel="stylesheet" />
+ * NOTE: use it inline like below, since the extra request to fast.fonts.net is not necessary
+ * D A N G E R: This font has a very bad hit-area and this can't yet be solved by css, it is in discussion though:
+ *  https://www.w3.org/TR/css-inline-3/#leading-trim
+ *  https://www.w3.org/TR/css-inline-3/#propdef-text-edge
+ *  https://css-tricks.com/leading-trim-the-future-of-digital-typesetting/
+ *  https://caniuse.com/?search=leading-trim
+ */
+@import url(/t/1.css?apiType=css&projectid=2b52b456-d052-418d-8595-f1c46d3439fb);
+@font-face{
+    font-family:"Futura Now Text W05 Light";
+    src:url("https://api2.fonts.com/FontSubsetter.ashx?d44f19a684109620e484157cae90e818d05e7b4dc77953436bf42aa54c21891361d76ac7d5c4acf089b819a36c434730c10ab27a04138decf328ed54aca4d5eacffbc2d8f944cb9ddafd5683755163af30cc1b25773b7b192c9b80d61a745744bd5f47f563e237e27fd7a197ac1c28f4a3c18c9098e0090c2820744a2f787721916f0f1c22ab960a6f60e42718fff28aca83065329a84cfbe94ad2c3098406&fctypeId=14&fcId=4b337b7c-fddd-4807-9488-a13e198cdbae&languages=en,fi,fr,de,pt,es&ot=false&projectId=2b52b456-d052-418d-8595-f1c46d3439fb") format("woff2"),url("https://api2.fonts.com/FontSubsetter.ashx?d44f19a684109620e484157cae90e818d05e7b4dc77953436bf42aa54c21891361d76ac7d5c4acf089b819a36c434730c10ab27a04138decf328ed54aca4d5eacffbc2d8f944cb9ddafd5683755163af30cc1b25773b7b192c9b80d61a745744bd5f47f563e237e27fd7a197ac1c28f4a3c18c9098e0090c2820744a2f787721916f0f1c22ab960a6f60e42718fff28aca83065329a84cfbe94ad2c3098406&fctypeId=3&fcId=4b337b7c-fddd-4807-9488-a13e198cdbae&languages=en,fi,fr,de,pt,es&ot=false&projectId=2b52b456-d052-418d-8595-f1c46d3439fb") format("woff");
+    font-display: block;
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face{
+    font-family:"Futura Now Text W05 Regular";
+    src:url("https://api2.fonts.com/FontSubsetter.ashx?d44f19a684109620e484157cae90e818d05e7b4dc77953436bf42aa54c21891361d76ac7d5c4acf089b819a36c434730c10ab27a04138decf328ed54aca4d5eacffbc2d8f944cb9ddafd5683755163af30cc1b25773b7b192c9b80d61a745744bd5f47f563e237e27fd7a197ac1c28f4a3c18c9098e0090c2820744a2f787721916f0f1c22ab960a6f60e42718fff28aca83065329a84cfbe94ad2c3098406&fctypeId=14&fcId=b146c55f-9315-4918-bdeb-285b47e2bbbf&languages=en,fi,fr,de,pt,es&ot=false&projectId=2b52b456-d052-418d-8595-f1c46d3439fb") format("woff2"),url("https://api2.fonts.com/FontSubsetter.ashx?d44f19a684109620e484157cae90e818d05e7b4dc77953436bf42aa54c21891361d76ac7d5c4acf089b819a36c434730c10ab27a04138decf328ed54aca4d5eacffbc2d8f944cb9ddafd5683755163af30cc1b25773b7b192c9b80d61a745744bd5f47f563e237e27fd7a197ac1c28f4a3c18c9098e0090c2820744a2f787721916f0f1c22ab960a6f60e42718fff28aca83065329a84cfbe94ad2c3098406&fctypeId=3&fcId=b146c55f-9315-4918-bdeb-285b47e2bbbf&languages=en,fi,fr,de,pt,es&ot=false&projectId=2b52b456-d052-418d-8595-f1c46d3439fb") format("woff");
+    font-display: block;
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face{
+    font-family:"Futura Now Text W05 XBold";
+    src:url("https://api2.fonts.com/FontSubsetter.ashx?d44f19a684109620e484157cae90e818d05e7b4dc77953436bf42aa54c21891361d76ac7d5c4acf089b819a36c434730c10ab27a04138decf328ed54aca4d5eacffbc2d8f944cb9ddafd5683755163af30cc1b25773b7b192c9b80d61a745744bd5f47f563e237e27fd7a197ac1c28f4a3c18c9098e0090c2820744a2f787721916f0f1c22ab960a6f60e42718fff28aca83065329a84cfbe94ad2c3098406&fctypeId=14&fcId=54e08efd-3b5a-4677-89e6-553be91d0a3a&languages=en,fi,fr,de,pt,es&ot=false&projectId=2b52b456-d052-418d-8595-f1c46d3439fb") format("woff2"),url("https://api2.fonts.com/FontSubsetter.ashx?d44f19a684109620e484157cae90e818d05e7b4dc77953436bf42aa54c21891361d76ac7d5c4acf089b819a36c434730c10ab27a04138decf328ed54aca4d5eacffbc2d8f944cb9ddafd5683755163af30cc1b25773b7b192c9b80d61a745744bd5f47f563e237e27fd7a197ac1c28f4a3c18c9098e0090c2820744a2f787721916f0f1c22ab960a6f60e42718fff28aca83065329a84cfbe94ad2c3098406&fctypeId=3&fcId=54e08efd-3b5a-4677-89e6-553be91d0a3a&languages=en,fi,fr,de,pt,es&ot=false&projectId=2b52b456-d052-418d-8595-f1c46d3439fb") format("woff");
+    font-display: block;
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face{
+    font-family:"Futura Now Text W05 XBlack";
+    src:url("https://api2.fonts.com/FontSubsetter.ashx?d44f19a684109620e484157cae90e818d05e7b4dc77953436bf42aa54c21891361d76ac7d5c4acf089b819a36c434730c10ab27a04138decf328ed54aca4d5eacffbc2d8f944cb9ddafd5683755163af30cc1b25773b7b192c9b80d61a745744bd5f47f563e237e27fd7a197ac1c28f4a3c18c9098e0090c2820744a2f787721916f0f1c22ab960a6f60e42718fff28aca83065329a84cfbe94ad2c3098406&fctypeId=14&fcId=54e08efd-3b5a-4677-89e6-553be91d0a3a&languages=en,fi,fr,de,pt,es&ot=false&projectId=2b52b456-d052-418d-8595-f1c46d3439fb") format("woff2"),url("https://api2.fonts.com/FontSubsetter.ashx?d44f19a684109620e484157cae90e818d05e7b4dc77953436bf42aa54c21891361d76ac7d5c4acf089b819a36c434730c10ab27a04138decf328ed54aca4d5eacffbc2d8f944cb9ddafd5683755163af30cc1b25773b7b192c9b80d61a745744bd5f47f563e237e27fd7a197ac1c28f4a3c18c9098e0090c2820744a2f787721916f0f1c22ab960a6f60e42718fff28aca83065329a84cfbe94ad2c3098406&fctypeId=3&fcId=54e08efd-3b5a-4677-89e6-553be91d0a3a&languages=en,fi,fr,de,pt,es&ot=false&projectId=2b52b456-d052-418d-8595-f1c46d3439fb") format("woff");
+    font-display: block;
+    font-style: normal;
+    font-weight: normal;
+}
