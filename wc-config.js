@@ -131,6 +131,10 @@
     {
       selector: 'base-a-',
       url: 'atoms/'
+    },
+    {
+      selector: 'base-m-',
+      url: 'molecules/'
     }
   ] // directories
   // ↑↑↑ adjustable ↑↑↑
