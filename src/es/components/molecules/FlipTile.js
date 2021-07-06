@@ -86,44 +86,36 @@ export default class FlipTile extends Shadow() {
         this.flipCardFront.className = 'flip-card-front';
         this.flipCardBack = document.createElement('DIV');
         this.flipCardBack.className = 'flip-card-back';
-
         this.flipCardInner.appendChild(this.flipCardFront);
         this.flipCardInner.appendChild(this.flipCardBack);
-
         this.flipCard.appendChild(this.flipCardInner);
+        //this.root.appendChild(this.flipCard);
+
+        this.html = this.flipCard;
 
 
-
-        
-        this.flipCard = this.root.appendChild(this.flipCard);
-
-
-        Array.from(this.root.children).forEach(node => {
-            if (node === this.flipTile || node.getAttribute('slot') || node.nodeName === 'STYLE') return false;
-            this.appendChild(node);
-        });
+        // Array.from(this.root.children).forEach(node => {
+        //     if (node === this.flipTile || node.getAttribute('slot') || node.nodeName === 'STYLE') return false;
+        //     this.appendChild(node);
+        // });
         if (this.getAttribute('card-front-src')) {
             
             this.loadChildComponents().then(children => {
-                const Picture = new children[0][1]({ namespace: this.getAttribute('namespace') ? `${this.getAttribute('namespace')}a-picture` : ''});
-                Picture.defaultSource = this.getAttribute('card-front-src');
-                Picture.alt = '';
-                Picture.setAttribute('loading', 'eager');
-                this.flipCardFront.appendChild(Picture);
+                
+                const div = document.createElement('div');
+                div.innerHTML = /* HTML */`<${children[0][0]} defaultSource="${this.getAttribute('card-front-src')}" alt="Denn halt"></${children[0][0]}>`;
+                this.flipCardFront.appendChild(div.children[0]);
             });
     
         }
         if (this.getAttribute('card-back-src')) {
 
             this.loadChildComponents().then(children => {
-                const Picture = new children[0][1]({ namespace: this.getAttribute('namespace') ? `${this.getAttribute('namespace')}a-picture` : ''});
-                Picture.defaultSource = this.getAttribute('card-back-src');
-                Picture.alt = '';
-                Picture.setAttribute('loading', 'eager');
-                this.flipCardBack.appendChild(Picture);
+                
+                const div = document.createElement('div');
+                div.innerHTML = /* HTML */`<${children[0][0]} defaultSource="${this.getAttribute('card-back-src')}" alt="Denn halt"></${children[0][0]}>`;
+                this.flipCardBack.appendChild(div.children[0]);
             });
-        
-
         }
     }
 
