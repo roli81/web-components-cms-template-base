@@ -1,10 +1,10 @@
-/**
+﻿/**
  * Variables naming rule: --{selector aka component aka namespace}-{css property}-{pseudo class or media query name} eg. --p-background-color-hover 
  * NOTE: Within the component don't use any name spacing eg. component header don't use --header-color just use --color the namespace can be added by the Shadow as an html attribute
  * - if a component holds other components or nodes you can declare or remap classes eg. :host > h1 {--color: var(--h1-color, white);}
  * - if a component holds other components you should share the attribute namespace with its children
  */
-html {
+ html {
   --a-display: block;
   --a-margin: 0;
   --a-text-align: center;
@@ -13,7 +13,7 @@ html {
   --a-text-underline-offset: 0.2em; /* should be 6px but not visible */
   --animation: none;
   --any-a-display: inline;
-  --background-color: #009fe3;
+  --background-color: rgb(45,40,40);
   --carousel-a-text-decoration-hover: var(--a-text-decoration-hover);
   --carousel-a-text-decoration: var(--a-text-decoration);
   --carousel-a-text-underline-offset: var(--a-text-underline-offset);
@@ -24,31 +24,34 @@ html {
   --carousel-h3-margin: 0;
   --carousel-h3-text-transform: uppercase;
   --carousel-p-margin: 0;
-  --carousel-pagination-background-color-selected: white;
-  --carousel-pagination-background-color: #FFED00;
+  --carousel-pagination-background-color-selected: rgb(200,200,200);
+  --carousel-pagination-background-color: rgba(128, 0, 0, .8);
   --carousel-pagination-bottom: 10%;
   --carousel-pagination-position: absolute;
   --carousel-pagination-width: 10px;
   --carousel-transition-duration: 1.6s;
   --color-hover-secondary: var(--color);
-  --color-hover: var(--color);
-  --color: #FFED00;
-  --concerts-playlist-border-bottom: 2px solid white;
-  --concerts-playlist-border-top: 2px solid white;
-  --concerts-playlist-color: var(--concerts-color);
-  --concerts-playlist-item-content-width-mobile: var(--content-width-not-web-component-mobile);
-  --concerts-playlist-item-h4-font-family: var(--h4-font-family);
-  --concerts-playlist-item-padding: var(--padding);
-  --concerts-playlist-margin-first-child: 30px 0 0 0;
-  --concerts-playlist-margin: 30px 0 10% 0;
-  --concerts-playlist-width: 100%;
-  --concerts-ul-text-align: var(--h1-text-align);
+  --color-hover: #ffffff;
+  --color: rgb(200,200,200);
   --content-spacing-mobile: 0;
-  --content-spacing: 20px;
+  --content-spacing: 2em;
   --content-width-mobile: 100%;
   --content-width-not-web-component-mobile: 90%;
   --content-width-not-web-component: 65%;
   --content-width: 45%;
+  --cookie-banner-color: var(--color);
+  --cookie-banner-font-size: 1em;
+  --cookie-banner-background-color: var(--background-color);
+  --cookie-banner-border-top: 3px solid rgb(128,0,0);
+  --cookie-banner-box-shadow: 0px -3px 10px rgb(128,0,0);
+  --cookie-banner-button-border-top: 0;
+  --cookie-banner-button-border-left: 0;
+  --cookie-banner-button-border-right: 0;
+  --cookie-banner-button-border-bottom: 0;
+  --cookie-banner-button-background-color: rgb(128, 0, 0);
+  --cookie-banner-button-background-color-hover: rgba(128, 0, 0, 0.8);
+  --cookie-banner-button-color: var(--color);
+  --cookie-banner-button-color-hover: var(--color-hover);
   --flex-grow: 1;
   --flyer-duration-mobile: 0.8s;
   --flyer-duration: 1.2s;
@@ -67,36 +70,18 @@ html {
   --footer-a-link-font-size: 0.8rem;
   --footer-a-text-underline-offset: var(--a-text-underline-offset);
   --footer-align-content: flex-start;
-  --footer-background-color: white;
+  --footer-background-color: rgba(128, 0, 0, .8);
   --footer-box-sizing: border-box;
-  --footer-color-hover: #009fe3;
-  --footer-color: #009fe3;
+  --footer-color-hover: var(--color-hover);
+  --footer-color: var(--color);
   --footer-content-width-mobile: 100%;
   --footer-content-width-not-web-component-mobile: var(--content-width-not-web-component-mobile);
   --footer-content-width-not-web-component: var(--content-width-not-web-component);
   --footer-content-width: 100%;
-  --footer-engagement-logo-flex-flow: column-reverse;
-  --footer-engagement-logo-justify-content: flex-start;
-  --footer-engagement-logo-margin: 0;
-  --footer-engagement-logo-max-height-mobile: 40px;
-  --footer-engagement-logo-max-height: 40px;
-  --footer-engagement-logo-padding: 24px 0 0;
-  --footer-engagement-logo-text-a-color-hover: var(--footer-engagement-logo-text-a-color);
-  --footer-engagement-logo-text-a-color: #009fe3;
-  --footer-engagement-logo-text-color: #009fe3;
-  --footer-engagement-logo-text-font-size-mobile: 0.42rem;
-  --footer-engagement-logo-text-font-size: 0.49rem;
-  --footer-engagement-logo-text-line-height: 11px;
-  --footer-engagement-logo-text-padding-en: 10px 0 0 25%;
-  --footer-engagement-logo-text-padding-fr: 10px 0 0 27%;
-  --footer-engagement-logo-text-padding-mobile-en: 10px 0 0 25%;
-  --footer-engagement-logo-text-padding-mobile-fr: 10px 0 0 27%;
-  --footer-engagement-logo-text-padding-mobile: 10px 0 0 34%;
-  --footer-engagement-logo-text-padding: 10px 0 0 32%;
-  --footer-flex-wrap: wrap; 
+  --footer-flex-wrap: wrap;
   --footer-font-size-mobile: var(--footer-a-link-font-size-mobile);
   --footer-font-size: var(--footer-a-link-font-size);
-  --footer-homepage-background-color: #009fe3;
+  --footer-homepage-background-color: rgba(128, 0, 0, .8);
   --footer-homepage-logo-container-justify-content: flex-end;
   --footer-homepage-padding-mobile: 0 10px 5px 0;
   --footer-homepage-padding: var(--footer-padding);
@@ -117,6 +102,7 @@ html {
   --footer-p-margin: -3px 0px;
   --footer-padding-mobile: 3vh 2vw;
   --footer-padding: calc(2.4vw - 15px) 10px 2.4vw 10px;
+  --footer-z-index: 0;
   --footer-text-align: center;
   --footer-text-decoration-hover: underline;
   --footer-ul-margin-mobile: 0 auto 15px auto;
@@ -133,7 +119,7 @@ html {
   --h2-font-size: var(--h1-font-size);
   --h2-line-height-mobile: var(--h1-line-height-mobile);
   --h2-line-height: var(--h1-line-height);
-  --h2-margin: 10px;
+  --h2-margin: 1em;
   --h2-text-align: var(--h1-text-align);
   --h2-text-transform: uppercase;
   --h2-word-break: break-word;
@@ -182,9 +168,9 @@ html {
   --header-a-text-underline-offset: var(--a-text-underline-offset);
   --header-a-transition: none;
   --header-background-animation: 1s ease;
-  --header-background-color-open: white;
+  --header-background-color-open: rgba(128, 0, 0, .8);
   --header-background-color: var(--header-background-color-open);
-  --header-color: #009fe3;
+  --header-color: var(--color);
   --header-content-spacing-mobile: var(--header-content-spacing);
   --header-content-spacing: 0;
   --header-content-width-mobile: var(--content-width-mobile);
@@ -206,9 +192,8 @@ html {
   --header-m-navigation-height-open-mobile: auto;
   --header-m-navigation-overflow-y-open-mobile: hidden;
   --header-m-navigation-position-mobile: static;
-  --header-padding-mobile: 2vh 10% 1vh;
-  --header-padding: 4vh 0 2vh;
-  --header-position: static;
+  --header-padding-mobile: 0;
+  --header-padding: 0;
   --header-text-align: center;
   --header-title-color-nav-open: #009fe3;
   --header-title-color-secondary-nav-open: var(--header-title-color-nav-open);
@@ -246,47 +231,22 @@ html {
   --main-padding: calc(var(--spacer-height)/2) 0 var(--spacer-height) 0;
   --module-wrapper-margin-mobile: 20% 0 0 0;
   --module-wrapper-margin: 15% 0 0 0;
-  --navigation-a-link-color-nav-open: #009fe3;
-  --navigation-a-link-content-spacing-nav-open: 0;
-  --navigation-a-link-content-spacing: 0;
-  --navigation-a-link-font-family: var(--font-family-bold);
-  --navigation-a-link-font-size-nav-open: var(--h1-font-size);
-  --navigation-a-link-font-size: 0;
-  --navigation-a-link-line-height-nav-open: 1em;
-  --navigation-a-link-line-height: var(--navigation-a-link-line-height-nav-open);
-  --navigation-a-link-second-level-font-size-nav-open: calc(var(--navigation-a-link-font-size-nav-open) * 0.9);
-  --navigation-a-link-second-level-font-size: 0;
-  --navigation-a-link-second-level-line-height-nav-open: var(--navigation-a-link-line-height-nav-open);
-  --navigation-a-link-text-transform: uppercase;
+  --navigation-background-color-mobile: rgba(128, 0, 0, .8);
   --navigation-background-color: transparent;
-  --navigation-border-top: 0;
-  --navigation-color-hover: var(--navigation-a-link-color-nav-open);
-  --navigation-color: #009fe3;
-  --navigation-content-spacing: 0;
-  --navigation-flex-direction: column;
-  --navigation-hr-color: transparent;
-  --navigation-li-ul-margin-nav-open: 0 0 3vh;
-  --navigation-li-ul-position: static;
-  --navigation-li-ul-width: 100%;
-  --navigation-padding-top: 0;
-  --navigation-padding: 0;
-  --navigation-text-align: center;
-  --navigation-transition: none;
-  --orchestra-a-display: block;
-  --orchestra-a-text-decoration: var(--a-text-decoration);
-  --orchestra-p-margin: 20px;
-  --orchestra-p-text-transform: uppercase;
+  --navigation-color: var(--color);
+  --navigation-content-spacing: 1em;
+  --navigation-color-hover: var(--color-hover);
   --p-date-text-transform: uppercase;
   --p-line-height: var(--line-height);
   --p-margin: 0;
   --p-text-align: center;
   --padding: 15px 0;
   --picture-img-max-height: 80vh;
-  --picture-margin: var(--content-spacing, unset) auto;  /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
+  --picture-margin: var(--content-spacing, unset) auto; /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
   --picture-width-mobile: 100%;
   --picture-width: var(--content-width, 80%);
   --playlist-border-bottom: 2px solid white;
-  --playlist-border-top: 2px solid white; 
+  --playlist-border-top: 2px solid white;
   --playlist-item-a-color-hover: var(--color);
   --playlist-item-a-color: var(--color);
   --playlist-item-a-text-decoration-hover: var(--a-text-decoration-hover);
@@ -308,7 +268,7 @@ html {
   --search-a-text-align: var(--a-text-align);
   --search-a-text-decoration-hover: var(--a-text-decoration-hover);
   --search-a-text-decoration: var(--a-text-decoration);
-  --search-a-text-underline-offset: var(--a-text-underline-offset); 
+  --search-a-text-underline-offset: var(--a-text-underline-offset);
   --search-balloon-font-size: min(var(--font-size-mobile), 3vw);
   --search-button-margin: 0;
   --search-button-position: absolute;
