@@ -245,6 +245,7 @@
   --picture-margin: var(--content-spacing, unset) auto; /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
   --picture-width-mobile: 100%;
   --picture-width: var(--content-width, 80%);
+  --picture-img-min-height: auto;
   --playlist-border-bottom: 2px solid white;
   --playlist-border-top: 2px solid white;
   --playlist-item-a-color-hover: var(--color);
