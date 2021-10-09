@@ -210,6 +210,7 @@
   --header-title-secondary-color-text-transform: lowercase;
   --header-title-transition: color 0.8s ease;
   --header-transition: background-color 0.3s ease;
+  --header-a-menu-icon-padding: 1em;
   --highlight-list-border-bottom: none;
   --highlight-list-border-top: none;
   --highlight-list-content-spacing: 40px 0;
@@ -236,6 +237,8 @@
   --navigation-color: var(--color);
   --navigation-content-spacing: 1em;
   --navigation-font-size: 1em;
+  --navigation-a-link-font-size-no-scroll-mobile: 1em;
+  --navigation-a-link-font-size-mobile: 1em;
   --navigation-color-hover: var(--color-hover);
   --p-date-text-transform: uppercase;
   --p-line-height: var(--line-height);
