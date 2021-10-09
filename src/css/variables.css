@@ -235,6 +235,7 @@
   --navigation-background-color: transparent;
   --navigation-color: var(--color);
   --navigation-content-spacing: 1em;
+  --navigation-font-size: 1em;
   --navigation-color-hover: var(--color-hover);
   --p-date-text-transform: uppercase;
   --p-line-height: var(--line-height);
