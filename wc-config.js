@@ -135,6 +135,10 @@
     {
       selector: 'base-m-',
       url: 'molecules/'
+    },
+    {
+      selector: 'base-o-',
+      url: 'organisms'
     }
   ] // directories
   // ↑↑↑ adjustable ↑↑↑
