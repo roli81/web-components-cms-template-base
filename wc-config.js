@@ -138,7 +138,7 @@
     },
     {
       selector: 'base-o-',
-      url: 'organisms'
+      url: 'organisms/'
     }
   ] // directories
   // ↑↑↑ adjustable ↑↑↑
