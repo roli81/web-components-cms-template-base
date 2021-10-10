@@ -70,7 +70,7 @@
   --footer-a-link-font-size: 0.8rem;
   --footer-a-text-underline-offset: var(--a-text-underline-offset);
   --footer-align-content: flex-start;
-  --footer-background-color: rgba(128, 0, 0, .8);
+  --footer-background-color: rgba(128, 0, 0, 1);
   --footer-box-sizing: border-box;
   --footer-color-hover: var(--color-hover);
   --footer-color: var(--color);
@@ -119,7 +119,7 @@
   --h2-font-size: var(--h1-font-size);
   --h2-line-height-mobile: var(--h1-line-height-mobile);
   --h2-line-height: var(--h1-line-height);
-  --h2-margin: 1em;
+  --h2-margin: 0;
   --h2-text-align: var(--h1-text-align);
   --h2-text-transform: uppercase;
   --h2-word-break: break-word;
@@ -178,7 +178,7 @@
   --header-content-width-not-web-component: var(--content-width-not-web-component-mobile);
   --header-content-width: var(--content-width-mobile);
   --header-flex-direction-mobile: column;
-  --header-flex-direction: column;
+  --header-flex-direction: row;
   --header-height-mobile: auto;
   --header-height: auto;
   --header-intro-p-margin: 0;
@@ -342,4 +342,10 @@
   --ul-text-align: var(--h1-text-align);
   --video-margin: 70px auto 0 auto;
   --video-width: var(--picture-width);
+  --img-max-height: 33vh;
+  --header-align-items: start;
+  --header-justify-content: start;
+  --navigation-align-items: center;
+  --navigation-justify-content: flex-end;
+  --navigation-padding: 2em 2em 0 0;
 }
