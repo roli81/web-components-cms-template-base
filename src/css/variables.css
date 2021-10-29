@@ -32,6 +32,7 @@
   --carousel-transition-duration: 1.6s;
   --color-hover-secondary: var(--color);
   --color-hover: #ffffff;
+  --color-secondary: rgb(128,0,0);
   --color: rgb(200,200,200);
   --content-spacing-mobile: 0;
   --content-spacing: 2em;
@@ -42,14 +43,14 @@
   --cookie-banner-color: var(--color);
   --cookie-banner-font-size: 1em;
   --cookie-banner-background-color: var(--background-color);
-  --cookie-banner-border-top: 3px solid rgb(128,0,0);
-  --cookie-banner-box-shadow: 0px -3px 10px rgb(128,0,0);
+  --cookie-banner-border-top: 3px solid var(--color-secondary);
+  --cookie-banner-box-shadow: 0px -3px 10px var(--color-secondary);
   --cookie-banner-button-border-top: 0;
   --cookie-banner-button-border-left: 0;
   --cookie-banner-button-border-right: 0;
   --cookie-banner-button-border-bottom: 0;
-  --cookie-banner-button-background-color: rgb(128, 0, 0);
-  --cookie-banner-button-background-color-hover: rgba(128, 0, 0, 0.8);
+  --cookie-banner-button-background-color: var(--color-secondary);
+  --cookie-banner-button-background-color-hover: var(--color-secondary);
   --cookie-banner-button-color: var(--color);
   --cookie-banner-button-color-hover: var(--color-hover);
   --flex-grow: 1;
@@ -69,7 +70,7 @@
   --footer-a-link-font-size: 0.8rem;
   --footer-a-text-underline-offset: var(--a-text-underline-offset);
   --footer-align-content: flex-start;
-  --footer-background-color: rgba(128, 0, 0, 1);
+  --footer-background-color: var(--color-secondary);
   --footer-box-sizing: border-box;
   --footer-color-hover: var(--color-hover);
   --footer-color: var(--color);
@@ -285,8 +286,8 @@
   --contactform-width: 60%;
   --contactform-font-size: 0.7em;
   --contactform-width-mobile: 90%;
-  --contactform-balloon-color: rgb(128,0,0);
-  --contactform-button-background-color-hover:  rgb(128,0,0);
+  --contactform-balloon-color:var(--color-secondary);
+  --contactform-button-background-color-hover: var(--color-secondary);
   --contactform-button-color-hover: var(--color) Im !important;
 
 
@@ -323,7 +324,7 @@
 
   --blog-color-secondary: var(--color);
   --blog-color:  #ffffff;
-  --flip-tile-background-color: rgb(128,0,0); 
+  --flip-tile-background-color: var(--color-secondary); 
   --a-color-hover: #ffffff;
 
   
@@ -343,7 +344,7 @@
 
   --search-field-label-color: var(--color);
   --search-field-label-background: var(--background-color);
-  --search-button-button-background-color-hover:  rgb(128,0,0);
+  --search-button-button-background-color-hover: var(--color-secondary);
   --search-field-background: var(--color);
   --search-field-input-color: var(--background-color);
   --search-button-button-background-color: var(--color);
