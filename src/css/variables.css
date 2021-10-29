@@ -356,4 +356,13 @@
   --search-field-input-width: 100%;
   --search-button-color: var(--background-color);
   --search-button-button-color-hover: var(--color);
+
+
+  --carousel-navigation-color: var(--color);
+  --carousel-navigation-icon-size: 96px;
+  /* --carousel-navigation-color-focus [black]
+  --carousel-navigation-background-color [transparent]
+  --carousel-navigation-background-color-focus [rgba(0, 0, 0, 0.2)]
+  --carousel-navigation-button-size [48px]
+  --carousel-navigation-icon-size [24px] */
 }
