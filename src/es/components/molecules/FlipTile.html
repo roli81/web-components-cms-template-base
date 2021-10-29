@@ -6,7 +6,7 @@
   <link href=../../../css/variables.css rel=stylesheet>
   <link href=../../../css/misc.css rel=stylesheet>
   <link href=../../../css/fonts.css rel=stylesheet>
-  <script type="text/javascript" src="../../../../wc-config.js"></script>
+  <script type="text/javascript" src="../../../../wc-config.js?dynamic=true"></script>
   <!-- NOTE: Remove line Debugging.js below for none localhost -->
   <title>Sparx</title>
 </head>
@@ -46,27 +46,62 @@
           </li>
         </ul>
       </m-navigation>
+
+
+
+
     </o-header>
-    <o-body>
+    <base-o-body>
 
-        <base-m-flip-tile card-front-src='https://randomuser.me/api/portraits/men/20.jpg' card-back-src='https://randomuser.me/api/portraits/men/5.jpg' >
+    <base-o-wrapper>
+    <div>
+      <base-m-flip-tile card-front-src='https://randomuser.me/api/portraits/men/20.jpg'>
 
-        </base-m-flip-tile>
+        <h4>TEST TITEL</h4>
+        <p>
+          Irgenein blöder text wird schon klappen!
 
-        <base-m-cookie-banner>
-            <p>Ich bin der Text</p>
-        </base-m-cookie-banner>
+        </p>
+        
+        <a href="https://www.google.com">
+          Test
+        </a>
 
 
-    </o-body>
+ 
+    </base-m-flip-tile>
+    </div>
+    <div>
+    <base-m-flip-tile card-front-src='https://randomuser.me/api/portraits/men/20.jpg' card-back-src='https://randomuser.me/api/portraits/men/5.jpg' >
+    </base-m-flip-tile>
+    </div>
+
+
+  </base-o-wrapper> 
+
+
+  <!-- <base-m-contact-form use-html-submit namespace="contactform-">
+  <form>
+    <label for="name">Name</label>
+    <input type="text" id="name" />
+    <label>Comment</label>
+    <textarea id="comment"></textarea>
+    </form>
+
+  </base-m-contact-form> -->
+
+
+    </base-o-body>
     <o-footer namespace="footer-">
-      <div>
-        <a-logo class="hide-mobile" namespace="footer-engagement-logo-" src="../../../img/logo_fge_mk_rgb_neg_300dpi_de.png" href="https://www.migros-engagement.ch/engagement" target="_blank" lang="de">
-          <p>sparx ist ein Projekt des Migros-Kulturprozent, Teil des gesellschaftlichen Engagements der Migros-Gruppe:  <br> <strong> <a style="color:#f60;font-size:var(--footer-engagement-logo-text-color)" href="https://www.migros-engagement.ch" target="_blank">https://www.migros-engagement.ch</a> </strong>
-          </p>
-        </a-logo>
-      </div>
-      <div class="footer-ul-wrapper">
+      <style>
+        :host footer {
+            height: 100%;
+        }
+    </style>
+
+
+
+      <div class="footer-links">
         <ul>
           <li>
             <p>© 2021</p>
@@ -81,11 +116,6 @@
             <p></p>
           </li>
         </ul>
-      </div>
-      <div class="logo-container">
-        <a-logo class="hide-desktop" namespace="footer-engagement-logo-" src="../../../img/logo_fge_mk_rgb_neg_300dpi_de.png" href="https://www.migros-engagement.ch/engagement" target="_blank" lang="de">
-          <p>sparx ist ein Projekt des Migros-Kulturprozent, Teil des gesellschaftlichen Engagements der Migros-Gruppe:  <br> <strong> <a class="test" href="https://www.migros-engagement.ch" target="_blank">https://www.migros-engagement.ch</a> </strong> SO EIN ARSCH SO EIN ARSCH</p>
-        </a-logo>
       </div>
     </o-footer>
   </p-general>
