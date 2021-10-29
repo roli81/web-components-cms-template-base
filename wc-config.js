@@ -41,7 +41,7 @@
    * the baseUrl should point to the components folder and is only used if the url is relative / url.charAt(0) is not "." nor "/"
    * @type {string}
    */
-  baseUrl = src.searchParams.get('baseUrl') || baseUrl
+    baseUrl =  src.searchParams.get('dynamic') ?  baseUrl : '/web-components-cms-template-base/src/es/components/';
   /** @type {Directory[]} */
   directories = JSON.parse((src.searchParams.get('directories') || '').replace(/'/g, '"') || '[]').concat(src.searchParams.get('useDefaultDirectories') !== 'false' ? directories : []).sort((a, b) => b.selector.length - a.selector.length) // list must be sorted by longest and most specific selector first (selector string length descending)
   // loading and defining the web components by its tagNames
