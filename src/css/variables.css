@@ -34,9 +34,9 @@
   --carousel-navigation-background-color-focus: var(--color-secondary);
   --carousel-navigation-background-color: var(--color);
   --carousel-navigation-button-size: 96px;
-  --carousel-navigation-color-focus: var(--color);
-  --carousel-navigation-color: var(--background-color);
-  --carousel-navigation-icon-size: 48px;
+  --carousel-navigation-color-focus: rgb(200,200,200,0.2);
+  --carousel-navigation-color: rgba(128, 0, 0, .8);
+  --carousel-navigation-icon-size: 24px;
   --carousel-p-margin: 0;
   --carousel-pagination-background-color-selected: rgb(200,200,200);
   --carousel-pagination-background-color: rgba(128, 0, 0, .8);
