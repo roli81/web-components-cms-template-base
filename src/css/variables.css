@@ -6,6 +6,7 @@
  */
  html {
   --a-color-hover: #ffffff;
+  --a-color: var(--color, white);
   --a-display: block;
   --a-margin: 0;
   --a-text-align: center;
