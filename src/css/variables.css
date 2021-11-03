@@ -114,7 +114,7 @@
   --footer-a-link-font-size: 0.8rem;
   --footer-a-text-underline-offset: var(--a-text-underline-offset);
   --footer-align-content: flex-start;
-  --footer-background-color:  var(--color);
+  --footer-background-color:  var(--color-secondary);
   --footer-box-sizing: border-box;
   --footer-color-hover: var(--color-hover);
   --footer-color: var(--color);
