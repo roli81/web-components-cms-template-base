@@ -226,7 +226,7 @@
   --header-a-transition: none;
   --header-align-items: start;
   --header-background-animation: 1s ease;
-  --header-background-color-open: rgba(128, 0, 0, .8);
+  --header-background-color-open: rgba(128, 0, 0,0.8);
   --header-background-color: var(--header-background-color-open);
   --header-color: var(--color);
   --header-content-spacing-mobile: var(--header-content-spacing);
