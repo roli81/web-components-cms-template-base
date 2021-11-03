@@ -114,7 +114,7 @@
   --footer-a-link-font-size: 0.8rem;
   --footer-a-text-underline-offset: var(--a-text-underline-offset);
   --footer-align-content: flex-start;
-  --footer-background-color:  var(--color-secondary);
+  --footer-background-color: rgba(128, 0, 0, .8);
   --footer-box-sizing: border-box;
   --footer-color-hover: var(--color-hover);
   --footer-color: var(--color);
@@ -226,7 +226,7 @@
   --header-a-transition: none;
   --header-align-items: start;
   --header-background-animation: 1s ease;
-  --header-background-color-open: rgba(128, 0, 0,0.8);
+  --header-background-color-open: rgba(128, 0, 0, .8);
   --header-background-color: var(--header-background-color-open);
   --header-color: var(--color);
   --header-content-spacing-mobile: var(--header-content-spacing);
