@@ -226,7 +226,7 @@
   --header-a-transition: none;
   --header-align-items: start;
   --header-background-animation: 1s ease;
-  --header-background-color-open: rgba(128, 0, 0, .8);
+  --header-background-color-open: rgba(128, 0, 0);
   --header-background-color: var(--header-background-color-open);
   --header-color: var(--color);
   --header-content-spacing-mobile: var(--header-content-spacing);
@@ -299,7 +299,7 @@
   --navigation-a-link-font-size-mobile: 1em;
   --navigation-a-link-font-size-no-scroll-mobile: 1em;
   --navigation-align-items: center;
-  --navigation-background-color-mobile: rgba(128, 0, 0, .8);
+  --navigation-background-color-mobile: rgba(128, 0, 0);
   --navigation-background-color: rgba(128, 0, 0);
   --navigation-color-hover: var(--color-hover);
   --navigation-color: var(--color);
