@@ -288,7 +288,7 @@
   --input-color: var(--background-color);
   --input-margin: 0;
   --input-width: 100%;
-  --li-align-self: center;
+  --li-align-self: flex-start;
   --li-margin: 0 12px;
   --line-height-mobile: 1.7em;
   --line-height: 1.5em;
