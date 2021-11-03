@@ -340,7 +340,7 @@
   --tickets-a-display: inline;
   --tickets-a-text-decoration: var(--a-text-decoration);
   --ul-display: flex;
-  --ul-text-align: var(--h1-text-align);
+  --ul-text-align: left;
   --video-margin: 70px auto 0 auto;
   --video-width: var(--picture-width);
 
