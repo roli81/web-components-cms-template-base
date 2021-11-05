@@ -20,6 +20,33 @@ import BaseBody from '../web-components-cms-template/src/es/components/organisms
  * }
  */
 export default class Body extends BaseBody {
+
+  constructor (...args) {
+    super(...args);
+
+    this.scrollButtonEventListener = event => {
+
+        debugger;
+        const targetPosition = this.root.querySelector(`*[id=${event.target.getAttribute('target-id')}]`).getBoundingClientRect().top;
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        })
+    };
+  }
+
+  connectedCallback () {
+    this.root.addEventListener('scroll-to', this.scrollButtonEventListener);
+    super.connectedCallback();
+  }
+
+  disconnectedCallback () {
+    this.root.removeEventListener('scroll-to', this.scrollButtonEventListener);
+    super.disconnectedCallback();
+  }
+
+
+
   renderCSS () {
     super.renderCSS()
     this.css = /* css */`
