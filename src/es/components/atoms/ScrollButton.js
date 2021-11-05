@@ -66,8 +66,8 @@ export default class ScrollButton extends Shadow() {
             height: 32px;
             border: 0;
             display: block;
-            margin: auto;
-            padding: var(--scroll-button-padding, 2em);
+            margin: 2em auto;
+           
         }
         
         :host button:hover {
