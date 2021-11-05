@@ -72,7 +72,7 @@ export default class ContactForm extends Form {
               margin-bottom: 2em;
           }
           ::placeholder {
-            color: rgb(128,0,0);
+            color: var(--placeholder-color, grey);
             opacity: var(--placeholder-opacity, 0.6);
           }
 
@@ -115,7 +115,7 @@ export default class ContactForm extends Form {
               pointer-events: none;
               transition: all 0.18s ease-out 0.18s;
               text-indent: 0;
-              font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+              font-family: var(--font-family);
               font-weight: normal;
               font-style: normal;
               text-shadow: none;
