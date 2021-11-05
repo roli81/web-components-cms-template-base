@@ -22,8 +22,11 @@ export default class FlipTile extends Shadow() {
     }
 
     renderCSS() {
-        this.css = `
 
+        let backgroundUrlBack = this.getAttribute('card-back-src') ? this.getAttribute('card-back-src') : '';
+        let backgroundUrlFront = this.getAttribute('card-front-src') ? this.getAttribute('card-front-src') : '';
+
+        this.css = `
         @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
             :host {
                 height: var(--flip-img-height-mobile, var(--flip-img-height));
@@ -102,6 +105,7 @@ export default class FlipTile extends Shadow() {
           text-align: center;
           transition: transform 0.8s;
           transform-style: preserve-3d;
+      
             
         }
         .flip-card-inner a-picture picture img {
@@ -127,36 +131,85 @@ export default class FlipTile extends Shadow() {
           position: absolute;
           -webkit-backface-visibility: hidden; /* Safari */
           backface-visibility: hidden;
-        }
-        
-        /* Style the front side (fallback if image is missing) */
-        .flip-card-front {
-
-          
-          color: black;
-        }
-
-        .flip-card-front  > picture > img {
-            object-fit: contain;
-        
-        }
-        
-        /* Style the back side */
-        .flip-card-back {
-          background-color: var(--flip-tile-background-color);
-          color: var(--color);
-          transform: rotateY(180deg);
-          height: 100%;
-          display: flex;
-          justify-content: center;
-          flex-direction: column;
           height: var(--flip-img-height);
           width: var(--flip-img-width);
           max-height: var(--flip-img-max-height);
           max-width: var(--flip-img-max-width);
+    
+          
+          
+        }
+        
+        .flip-card-front *, .flip-card-back * {
+            margin: 1em;
+        }
+        /* Style the front side (fallback if image is missing) */
+        .flip-card-front {
+        
+          background:  var(--flip-tile-background-color) url('${backgroundUrlFront}') no-repeat;  
+          background-size: 100% 100%;
+        
+
+        }
+
 
         
-        }`;
+        /* Style the back side */
+        .flip-card-back {
+          background:  var(--flip-tile-background-color) url('${backgroundUrlBack}') no-repeat;  
+          background-size: 100% 100%;
+
+          color: var(--color);
+          transform: rotateY(180deg);
+          height: 100%;
+     
+
+        
+        }
+        
+        .overlay {
+            margin: 0 !important;
+            background-color: rgba(0,0,0,0.5);
+            font-weight: 800;
+            color: var(--color, white);
+            display: block;
+            width: 100%;
+            padding: 0.2em 0;
+
+        }
+        `;
+
+
+        if (backgroundUrlBack !== '')
+        {
+            this.css += `
+            .flip-card-back {
+                align-items: center;
+                display: flex;
+                justify-content: flex-end;
+                flex-direction: column;
+            }
+
+        `;
+
+        }
+
+        if (backgroundUrlFront !== '')
+        {
+            this.css += `
+            .flip-card-front {
+                align-items: center;
+                display: flex;
+                justify-content: flex-end;
+                flex-direction: column;
+            }
+
+        `;
+
+        }
+
+
+        
     }
 
 
@@ -177,13 +230,29 @@ export default class FlipTile extends Shadow() {
         this.flipCardInner.appendChild(this.flipCardBack);
         this.flipCard.appendChild(this.flipCardInner);
 
+        Array.from(this.root.children).forEach(c => {
+
+        
+                if (c.classList.contains('front')) {
+                    this.flipCardFront.appendChild(c);
+                } else if (c.classList.contains('back'))
+                {
+                    this.flipCardBack.appendChild(c);
+                }
+
+     
+
+            // if (c !== this.flipCardBack) {
+            //     this.flipCardBack.appendChild(c);
+            // }
+        });
         
         if (this.getAttribute('card-front-src')) {
 
             this.loadChildComponents().then(children => {
                 const div = document.createElement('div');
-                div.innerHTML = /* HTML */`<${children[0][0]} defaultSource="${this.getAttribute('card-front-src')}" namespace="flip-" alt="${this.getAttribute('card-front-alt')}"></${children[0][0]}>`;
-                this.flipCardFront.appendChild(div.children[0]);
+                // div.innerHTML = /* HTML */`<${children[0][0]} defaultSource="${this.getAttribute('card-front-src')}" namespace="flip-" alt="${this.getAttribute('card-front-alt')}"></${children[0][0]}>`;
+                // this.flipCardFront.appendChild(div.children[0]);
             });
 
         }
@@ -192,17 +261,12 @@ export default class FlipTile extends Shadow() {
             this.loadChildComponents().then(children => {
 
                 const div = document.createElement('div');
-                div.innerHTML = /* HTML */`<${children[0][0]} defaultSource="${this.getAttribute('card-back-src')}" namespace="flip-" alt="${this.getAttribute('card-back-alt')}"></${children[0][0]}>`;
-                this.flipCardBack.appendChild(div.children[0]);
+                // div.innerHTML = /* HTML */`<${children[0][0]} defaultSource="${this.getAttribute('card-back-src')}" namespace="flip-" alt="${this.getAttribute('card-back-alt')}"></${children[0][0]}>`;
+                // this.flipCardBack.appendChild(div.children[0]);
             });
         }
         else {
-            Array.from(this.root.children).forEach(c => {
-                if (c !== this.flipCardBack) {
-                    this.flipCardBack.appendChild(c);
-                }
-                
-            });
+
         }
 
         this.html = this.flipCard;
