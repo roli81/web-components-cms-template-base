@@ -25,7 +25,7 @@ export default class Body extends BaseBody {
     super(...args);
 
     this.scrollButtonEventListener = event => {
-        const targetPosition = this.root.getElementById(event.target.getAttribute('target-id')).getBoundingClientRect().bottom;
+        const targetPosition = this.root.getElementById(event.target.getAttribute('target-id')).getBoundingClientRect().bottom * 0.9;
         window.scrollTo({
           top: targetPosition,
           behavior: 'smooth'
