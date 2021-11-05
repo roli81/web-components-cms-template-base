@@ -51,7 +51,7 @@ export default class Body extends BaseBody {
       ${this.hasAttribute('home')
         ? /* css */`
           :host > main {
-            padding: var(--scroll-button-padding, 2em);
+
             align-items: center;
             display: flex;
             height: var(--height, max(75vh, calc(100% - 4.1em)));

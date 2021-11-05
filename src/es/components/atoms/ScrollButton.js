@@ -67,9 +67,10 @@ export default class ScrollButton extends Shadow() {
             border: 0;
             display: block;
             margin: auto;
+            padding: var(--scroll-button-padding, 2em);
         }
         
-        :Host button:hover {
+        :host button:hover {
             background-image:   url('${backgroundUrlHover}');
         }`;
     }
