@@ -88,7 +88,7 @@ export default class TextArea extends Shadow() {
           :host textarea {
             resize: none !important;
             height: 25vh;
-            background-color: rgb(200,200,200);
+            background-color: var(--input-background);
             font-family: var(--input-font-family, var(--font-family));
             font-weight: var(--input-font-weight, var(--font-weight, normal));
             font-size: var(--input-font-size, var(--p-font-size, var(--font-size)));
