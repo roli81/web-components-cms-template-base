@@ -245,42 +245,43 @@ export default class ContactForm extends Form {
     renderHTML () {
         this.hasRendered = true
         this.loadChildComponents().then(children => {
-          Array.from(this.root.querySelectorAll('input'))
-            .filter(i => i.getAttribute('type') !== 'hidden').forEach(input => {
-              this.inputFields.push(input)
-              const label = this.root.querySelector(`label[for='${input.getAttribute('id')}']`)
-              const aInput = new children[0][1](input, label, { mode: 'false', namespace: this.getAttribute('namespace-children') || this.getAttribute('namespace') || '' })
-              aInput.setAttribute('type', input.getAttribute('type'))
-              if (input.hasAttribute('reverse')) aInput.setAttribute('reverse', input.getAttribute('reverse'))
-              input.replaceWith(aInput)
-              if (input.hasAttribute('validation-message')) {
-                const changeListener = event => {
-                  if (input.hasAttribute('valid') ? input.getAttribute('valid') === 'true' : input.validity.valid) {
-                    label.removeAttribute('data-balloon-visible')
-                    label.removeAttribute('aria-label')
-                    label.removeAttribute('data-balloon-pos')
-                  } else {
-                    label.setAttribute('data-balloon-visible', 'true')
-                    label.setAttribute('aria-label', input.getAttribute('validation-message'))
-                    label.setAttribute('data-balloon-pos', input.hasAttribute('reverse') ? 'down' : 'up')
-                  }
+          this.inputAll
+          .filter(i => i.getAttribute('type') !== 'hidden').forEach(input => {
+            this.inputFields.push(input)
+            const label = this.root.querySelector(`label[for='${input.getAttribute('id')}']`) || this.root.querySelector(`label[for='${input.getAttribute('name')}']`)
+            const description = this.getDescription(input)
+            const aInput = new children[0][1](input, label, description, { mode: 'false', namespace: this.getAttribute('namespace-children') || this.getAttribute('namespace') || '', namespaceFallback: this.hasAttribute('namespace-fallback-children') || this.hasAttribute('namespace-fallback') })
+            aInput.setAttribute('type', input.getAttribute('type'))
+            if (input.hasAttribute('reverse')) aInput.setAttribute('reverse', input.getAttribute('reverse'))
+            input.replaceWith(aInput)
+            if (input.hasAttribute('validation-message')) {
+              const changeListener = event => {
+                if (input.hasAttribute('valid') ? input.getAttribute('valid') === 'true' : input.validity.valid) {
+                  label.removeAttribute('data-balloon-visible')
+                  label.removeAttribute('aria-label')
+                  label.removeAttribute('data-balloon-pos')
+                } else {
+                  label.setAttribute('data-balloon-visible', 'true')
+                  label.setAttribute('aria-label', input.getAttribute('validation-message'))
+                  label.setAttribute('data-balloon-pos', input.hasAttribute('reverse') ? 'down' : 'up')
                 }
-                this.validateFunctions.push(changeListener)
-                input.changeListener = changeListener
-                input.addEventListener('blur', changeListener)
-                input.addEventListener('blur', event => {
-                  input.addEventListener('change', changeListener)
-                  input.addEventListener('keyup', changeListener)
-                }, { once: true })
               }
-            })
+              this.validateFunctions.push(changeListener)
+              input.changeListener = changeListener
+              input.addEventListener('blur', changeListener)
+              input.addEventListener('blur', event => {
+                input.addEventListener('change', changeListener)
+                input.addEventListener('keyup', changeListener)
+              }, { once: true })
+            }
+          })
           // spam protection
-          if (this.getAttribute('type') === 'newsletter') {
-            this.emptyInput = document.createElement('input')
-            this.emptyInput.type = 'text'
-            this.emptyInput.id = 'oceans'
-            this.form.appendChild(this.emptyInput)
-          }
+          // if (this.getAttribute('type') === 'newsletter') {
+          //   this.emptyInput = document.createElement('input')
+          //   this.emptyInput.type = 'text'
+          //   this.emptyInput.id = 'oceans'
+          //   this.form.appendChild(this.emptyInput)
+          // }
           Array.from(this.root.querySelectorAll('textarea')).forEach(textarea => {
             this.textAreas.push(textarea)
             const label = this.root.querySelector(`label[for='${textarea.getAttribute('id')}']`)
