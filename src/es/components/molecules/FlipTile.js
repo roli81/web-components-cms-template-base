@@ -26,7 +26,7 @@ export default class FlipTile extends Shadow() {
         let backgroundUrlBack = this.getAttribute('card-back-src') ? this.getAttribute('card-back-src') : '';
         let backgroundUrlFront = this.getAttribute('card-front-src') ? this.getAttribute('card-front-src') : '';
 
-        this.css = `
+        this.css = /*css*/`
         @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
             :host {
                 height: var(--flip-img-height-mobile, var(--flip-img-height));
@@ -42,9 +42,14 @@ export default class FlipTile extends Shadow() {
                 width: var(--flip-img-width-mobile, var(--flip-img-width));
                 max-height: var(--flip-img-max-height-mobile, var(--flip-img-max-height));
                 max-width: var(--flip-img-max-width-mobile, var(--flip-img-max-width));
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
               }
 
               .flip-card-back {
+                disp
                 height: var(--flip-img-height-mobile, var(--flip-img-height));
                 width: var(--flip-img-width-mobile, var(--flip-img-width));
                 max-height: var(--flip-img-max-height-mobile, var(--flip-img-max-height));
