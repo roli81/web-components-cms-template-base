@@ -1,6 +1,8 @@
 import { Shadow } from '../web-components-cms-template/src/es/components/prototypes/Shadow.js';
 
 export default class GoogleMaps extends Shadow() {
+
+    bounds = new google.maps.LatLngBounds();
     constructor(...args)
     {
         super(...args);
@@ -45,18 +47,25 @@ export default class GoogleMaps extends Shadow() {
 
 
     addMarker(gMap, markerData) {
+
+
         const marker = new google.maps.Marker({
             position: {lat: markerData.lat, lng: markerData.lng},
             map: gMap
         });
 
+        this.bounds.extend(marker.position);
+
         if (markerData.content) {
             this.addInfoWindow(gMap, marker, markerData.content);
         }
+
+        gMap.fitBounds(this.bounds);
     }
 
 
     addInfoWindow(gMap, marker, content) {
+        
         const infoWindow = new google.maps.InfoWindow({
             content: content
         });
@@ -68,6 +77,7 @@ export default class GoogleMaps extends Shadow() {
                 shouldFocus: true
             })
         });
+
 
     }
 
@@ -96,11 +106,12 @@ export default class GoogleMaps extends Shadow() {
         // });  
 
 
+       
+
+        
 
         const markers = Array.from(this.shadowRoot.querySelectorAll('base-g-maps-marker'))
         .map(m => {
-            
-
             let res = {
                 lat: parseFloat(m.getAttribute('lat')),
                 lng: parseFloat(m.getAttribute('long')),
@@ -120,6 +131,7 @@ export default class GoogleMaps extends Shadow() {
         markers.forEach(m => this.addMarker(gMap, m));
   
 
+        
         this.map = gMap; 
         this.html = this.container;
     }
