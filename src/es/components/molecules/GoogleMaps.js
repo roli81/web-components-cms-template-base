@@ -2,7 +2,9 @@ import { Shadow } from '../web-components-cms-template/src/es/components/prototy
 
 export default class GoogleMaps extends Shadow() {
 
-    bounds = new google.maps.LatLngBounds();
+    bounds = undefined;
+  
+
     constructor(...args)
     {
         super(...args);
@@ -51,16 +53,19 @@ export default class GoogleMaps extends Shadow() {
 
         const marker = new google.maps.Marker({
             position: {lat: markerData.lat, lng: markerData.lng},
-            map: gMap
+            map: gMap,
+            icon: markerData.icon
         });
 
-        this.bounds.extend(marker.position);
+        if (this.bounds) {
+            this.bounds.extend(marker.position);
+        }
+      
 
         if (markerData.content) {
             this.addInfoWindow(gMap, marker, markerData.content);
         }
 
-        gMap.fitBounds(this.bounds);
     }
 
 
@@ -105,9 +110,6 @@ export default class GoogleMaps extends Shadow() {
 
         // });  
 
-
-       
-
         
 
         const markers = Array.from(this.shadowRoot.querySelectorAll('base-g-maps-marker'))
@@ -115,23 +117,21 @@ export default class GoogleMaps extends Shadow() {
             let res = {
                 lat: parseFloat(m.getAttribute('lat')),
                 lng: parseFloat(m.getAttribute('long')),
-                content: m.innerHTML 
+                content: m.innerHTML,
+                icon: m.getAttribute('icon') 
             }; 
 
             m.innerHTML = '';
             return res; 
         });
 
+        this.bounds = markers.length > 1 ? this.bounds = new google.maps.LatLngBounds() : undefined;
 
-
-
-
+        if (this.bounds) {
+            gMap.fitBounds(this.bounds);
+        }
   
-
-        markers.forEach(m => this.addMarker(gMap, m));
-  
-
-        
+        markers.forEach(m => this.addMarker(gMap, m));      
         this.map = gMap; 
         this.html = this.container;
     }
