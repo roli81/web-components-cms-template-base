@@ -8,6 +8,8 @@ export default class FlipTile extends Shadow() {
     }
 
 
+ 
+
     connectedCallback() {
         if (this.shouldComponentRenderCSS()) this.renderCSS();
         if (this.shouldComponentRenderHTML()) this.renderTile();

@@ -21,44 +21,67 @@ import BaseBody from '../web-components-cms-template/src/es/components/organisms
  */
 export default class Body extends BaseBody {
 
-  constructor (...args) {
-    super(...args);
-
-    this.scrollButtonEventListener = event => {
-        const targetPosition = this.root.getElementById(event.target.getAttribute('target-id')).getBoundingClientRect().bottom * 0.9;
-        window.scrollTo({
-          top: targetPosition - targetPosition * 0.2,
-          behavior: 'smooth'
-        })
-    };
-  }
-
-  connectedCallback () {
-    this.root.addEventListener('scroll-to', this.scrollButtonEventListener);
-    super.connectedCallback();
-  }
-
-  disconnectedCallback () {
-    this.root.removeEventListener('scroll-to', this.scrollButtonEventListener);
-    super.disconnectedCallback();
-  }
+    constructor(...args) {
+        super(...args);
 
 
+        this.addToBasketListener = event => {
+            event.stopPropagation();
+        };
 
-  renderCSS () {
-    super.renderCSS()
-    this.css = /* css */`
-      ${this.hasAttribute('home')
-        ? /* css */`
-          :host > main {
+        this.scrollButtonEventListener = event => {
+            const targetPosition = this.root.getElementById(event.target.getAttribute('target-id')).getBoundingClientRect().bottom * 0.9;
+            window.scrollTo({
+                top: targetPosition - targetPosition * 0.2,
+                behavior: 'smooth'
+            })
+        };
+    }
 
-            align-items: center;
-            display: flex;
-            height: var(--height, max(75vh, calc(100% - 4.1em)));
-            overflow: visible;
-          }
-        `
-        : ''}
+    connectedCallback() {
+        this.root.addEventListener('scroll-to', this.scrollButtonEventListener);
+        this.shadowRoot.addEventListener('addToBasket', this.addToBasketListener);
+        super.connectedCallback();
+    }
+
+    disconnectedCallback() {
+        this.root.removeEventListener('scroll-to', this.scrollButtonEventListener);
+        this.shadowRoot.removeEventListener('addToBasket', this.addToBasketListener);
+        super.disconnectedCallback();
+    }
+
+
+
+    renderCSS() {
+
+
+        super.renderCSS()
+        this.css = /* css */`
+
+
+        :host > main {
+          position: relative;
+        }
+
+        :host {
+          position: relative;
+        }
+        :host:before  {
+          content: ' ';
+          display: block;
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          opacity: ${this.getAttribute('page-bg-opacity')};
+          background: url('${this.getAttribute('page-background-img')}');
+
+          background-repeat: no-repeat;
+          background-position: 50% 0;
+          background-size: cover;
+        }
+
       :host > main > *[content-width] {
         width: var(--content-width, 80%);
         margin-bottom: var(--content-spacing);
@@ -98,6 +121,11 @@ export default class Body extends BaseBody {
         font-family: var(--a-font-family-hover);
       }
       @media only screen and (max-width: ${this.getAttribute('mobile-breakpoint') ? this.getAttribute('mobile-breakpoint') : self.Environment && !!self.Environment.mobileBreakpoint ? self.Environment.mobileBreakpoint : '1000px'}) {
+        
+
+                
+
+        
         :host > main > *[content-width] {
           width: var(--content-width-mobile, 80%);
           margin-bottom: var(--content-spacing-mobile);
@@ -128,5 +156,5 @@ export default class Body extends BaseBody {
         }
       }
     `
-  }
+    }
 }
