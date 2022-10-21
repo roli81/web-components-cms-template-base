@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href=../../../css/variables.css rel=stylesheet>
+    <link href=../../../css/misc.css rel=stylesheet>
+    <link href=../../../css/fonts.css rel=stylesheet>
+    <script type="text/javascript" src="../../../../wc-config.js?dynamic=true"></script>
+    <!-- NOTE: Remove line Debugging.js below for none localhost -->
+    <title>Sparx</title>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1kFw1J_1G9jBtge0V__iMS8drBlIgVkU"></script>
+</head>
+
+<body>
+    <p-general>
+
+
+
+        <o-header mobile-breakpoint="100vw" no-scroll="nav-open" menu-icon="true" namespace="header-">
+            <m-navigation hover="false" namespace="navigation-" mobile-breakpoint="0vw" no-scroll="nav-open">
+                <ul>
+                    <li>
+                        <a href="/about/" target="">About</a>
+                    </li>
+                    <li>
+                        <a href="/forderung/" target="">Förderung</a>
+                    </li>
+                    <li>
+                        <a href="/kosmos/" target="">Kosmos</a>
+                    </li>
+                    <li>
+                        <a href="/studios/" target="">Studios</a>
+                    </li>
+                    <li>
+                        <a href="/news/" target="">News</a>
+                        <ul>
+                            <li>
+                                <a href="/news/neue-sparx-home-page/" target="">Neue Sparx Home Page</a>
+                            </li>
+                            <li>
+                                <a href="/news/noch-eine-neue-news/" target="">Noch eine neue News</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/netzwerk/" target="">Netzwerk</a>
+                    </li>
+                </ul>
+            </m-navigation>
+
+
+
+
+        </o-header>
+        <base-o-body page-background-img="bg-test.jpg" page-bg-opacity="0.2">
+
+
+
+            <base-c-basket>
+
+
+            <base-o-grid col="3" col-mobile="1">
+
+
+                <div>
+                    <h5>Produkt 1</h5>
+
+                </div>
+                <div>
+                    <h5>Produkt 2</h5>
+
+                </div>
+                <div>
+                    <h5>Produkt 3</h5>
+
+                </div>
+                <div>
+                    <h5>Produkt 4</h5>
+                    <base-o-order-button product-id="12343"></base-o-order-button>
+                </div>
+
+                
+            </base-o-grid>
+
+
+
+
+
+            </base-c-basket>
+
+
+
+            <h2 id='test'>TEST</h2>
+        </base-o-body>
+        <o-footer namespace="footer-">
+            <style>
+                :host footer {
+                    height: 100%;
+                }
+            </style>
+
+
+
+            <div class="footer-links">
+                <ul>
+                    <li>
+                        <p>© 2021</p>
+                    </li>
+                    <li>
+                        <p class="language-switcher">
+                            <a href="http://testadmin.sparx-space.ch/"> EN </a> <a
+                                href="http://testadmin.sparx-space.ch/"> FR </a>
+                        </p>
+                    </li>
+                    <br>
+                    <li>
+                        <p></p>
+                    </li>
+                </ul>
+            </div>
+        </o-footer>
+    </p-general>
+    <script rel=preload type=module>
+    self.Environment = {
+      mobileBreakpoint: '600px'
+    }
+  </script>
+</body>
+
+</html>

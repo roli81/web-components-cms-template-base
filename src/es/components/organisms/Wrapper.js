@@ -61,20 +61,7 @@ export default class Wrapper extends Style {
           `
         }
         ${this.hasAttribute('spacing') ? `--spacing: ${this.getAttribute('spacing')};` : '--spacing: 0.85em;'}
-        --carousel-content-width: 100%;
-        --carousel-margin-mobile: 0;
-        --carousel-margin: 0;
-        --picture-display: inline;
-        --picture-margin: 0;
-        --picture-height-mobile: auto;
-        --picture-height: 100%;
-        --picture-width-mobile: 100%;
-        --picture-width: 100%;
-        --picture-img-width: auto;
-        --video-margin: 0;
-        --video-min-height: 100%;
-        --video-width-mobile: 100%;
-        --video-min-width: 100%;
+
       }
       :host > section {
         display: flex;
@@ -237,7 +224,9 @@ export default class Wrapper extends Style {
   renderHTML () {
     const section = document.createElement('section')
     Array.from(this.root.children).forEach(node => {
-      if (node.tagName !== 'STYLE') section.appendChild(node)
+        if (node.tagName !== 'STYLE') {
+            section.appendChild(node);
+        }
     })
     this.html = section
   }
