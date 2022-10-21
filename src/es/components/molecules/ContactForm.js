@@ -7,44 +7,88 @@ export default class ContactForm extends Form {
 
 
     constructor(...args) {
-      super(...args);
-      this.textAreas = [];
-    }
+        super(...args);
+        this.submitEventListener = event => {
 
+            event.preventDefault()
+            if ((!this.emptyInput || !this.emptyInput.value) && this.form && this.inputFields.every(input => input.validity.valid) && this.valids.every(valid => valid.getAttribute('valid') === 'true')) {
+                const method = this.form.getAttribute('method')
+                const action = this.form.getAttribute('action')
+                const body = this.getAllInputValues(this.form)
 
-    connectedCallback(){
-        super.connectedCallback();
-        
-        
-    }
-
-
-    submitByHTML(formData, method, action){
-      const form = document.createElement('form')
-      form.setAttribute('method', method)
-      form.setAttribute('action', action);
-      [...formData].forEach(([key, val]) => {
-        if (key !== 'ufprt') {
-
-          console.log(`key ${key} value ${val}`)
-          const input = document.createElement('input')
-          input.setAttribute('name', key)
-          input.setAttribute('value', val)
-          form.appendChild(input)
-        } else {
-          const input = this.form.querySelector('input[name="ufprt"]').cloneNode()
-          form.appendChild(input)
+                if (this.hasAttribute('use-html-submit')) {
+                    this.submitByHTML(body, method, action)
+                } else if (this.hasAttribute('use-url-params')) {
+                    const headers = {
+                        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                    }
+                    const body = this.getAllInputValuesAsUrlParams(this.form)
+                    fetch(action, { method, body, headers })
+                        .then(response => {
+                            return response.ok
+                        })
+                        .catch(error => {
+                            this.submitFailure(error, this.getAttribute('type'))
+                        })
+                } else {
+                    fetch(action, { method, body })
+                        .then(response => {
+                            if (event.detail && event.detail.button) event.detail.button.disabled = false
+                            if (response.ok) {
+                                this.submitSuccess(response, this.getAttribute('type'))
+                            } else {
+                                this.submitFailure(response, this.getAttribute('type'))
+                            }
+                        })
+                        .catch(error => {
+                            if (event.detail && event.detail.button) event.detail.button.disabled = false
+                            this.submitFailure(error, this.getAttribute('type'))
+                        })
+                }
+                return true
+            } else {
+                this.validateFunctions.forEach(func => func())
+                return false
+            }
         }
-      })
-      const button = document.createElement('button')
-      button.setAttribute('type', 'submit')
-      form.appendChild(button)
-      document.body.appendChild(form)
-      form.hidden = true
-      button.click()
+        this.textAreas = [];
     }
 
-    renderCSS () {
+
+    connectedCallback() {
+
+        super.connectedCallback();
+
+
+    }
+
+
+    submitByHTML(formData, method, action) {
+        const form = document.createElement('form')
+        form.setAttribute('method', method)
+        form.setAttribute('action', action);
+        [...formData].forEach(([key, val]) => {
+            if (key !== 'ufprt') {
+
+                console.log(`key ${key} value ${val}`)
+                const input = document.createElement('input')
+                input.setAttribute('name', key)
+                input.setAttribute('value', val)
+                form.appendChild(input)
+            } else {
+                const input = this.form.querySelector('input[name="ufprt"]').cloneNode()
+                form.appendChild(input)
+            }
+        })
+        const button = document.createElement('button')
+        button.setAttribute('type', 'submit')
+        form.appendChild(button)
+        document.body.appendChild(form)
+        form.hidden = true
+        button.click()
+    }
+
+    renderCSS() {
         // super.renderCSS();
 
         this.css = `
@@ -242,146 +286,148 @@ export default class ContactForm extends Form {
 
 
 
-    renderHTML () {
-        this.hasRendered = true
+    renderHTML() {
+
         this.loadChildComponents().then(children => {
-          this.inputAll
-          .filter(i => i.getAttribute('type') !== 'hidden').forEach(input => {
-            this.inputFields.push(input)
-            const label = this.root.querySelector(`label[for='${input.getAttribute('id')}']`) || this.root.querySelector(`label[for='${input.getAttribute('name')}']`)
-            const description = this.getDescription(input)
-            const aInput = new children[0][1](input, label, description, { mode: 'false', namespace: this.getAttribute('namespace-children') || this.getAttribute('namespace') || '', namespaceFallback: this.hasAttribute('namespace-fallback-children') || this.hasAttribute('namespace-fallback') })
-            aInput.setAttribute('type', input.getAttribute('type'))
-            if (input.hasAttribute('reverse')) aInput.setAttribute('reverse', input.getAttribute('reverse'))
-            input.replaceWith(aInput)
-            if (input.hasAttribute('validation-message')) {
-              const changeListener = event => {
-                if (input.hasAttribute('valid') ? input.getAttribute('valid') === 'true' : input.validity.valid) {
-                  label.removeAttribute('data-balloon-visible')
-                  label.removeAttribute('aria-label')
-                  label.removeAttribute('data-balloon-pos')
-                } else {
-                  label.setAttribute('data-balloon-visible', 'true')
-                  label.setAttribute('aria-label', input.getAttribute('validation-message'))
-                  label.setAttribute('data-balloon-pos', input.hasAttribute('reverse') ? 'down' : 'up')
-                }
-              }
-              this.validateFunctions.push(changeListener)
-              input.changeListener = changeListener
-              input.addEventListener('blur', changeListener)
-              input.addEventListener('blur', event => {
-                input.addEventListener('change', changeListener)
-                input.addEventListener('keyup', changeListener)
-              }, { once: true })
-            }
-          })
-          // spam protection
-          // if (this.getAttribute('type') === 'newsletter') {
-          //   this.emptyInput = document.createElement('input')
-          //   this.emptyInput.type = 'text'
-          //   this.emptyInput.id = 'oceans'
-          //   this.form.appendChild(this.emptyInput)
-          // }
-          Array.from(this.root.querySelectorAll('textarea')).forEach(textarea => {
-            this.textAreas.push(textarea)
-            const label = this.root.querySelector(`label[for='${textarea.getAttribute('id')}']`)
-            const aTextArea = new children[2][1](textarea, label, { mode: 'false', namespace: this.getAttribute('namespace-children') || this.getAttribute('namespace') || '' })
-     
-            if (textarea.hasAttribute('reverse')) aTextArea.setAttribute('reverse', textarea.getAttribute('reverse'))
-            textarea.replaceWith(aTextArea)
-            if (textarea.hasAttribute('validation-message')) {
-              const changeListener = event => {
-                if (textarea.hasAttribute('valid') ? textarea.getAttribute('valid') === 'true' : textarea.validity.valid) {
-                  label.removeAttribute('data-balloon-visible')
-                  label.removeAttribute('aria-label')
-                  label.removeAttribute('data-balloon-pos')
-                } else {
-                  label.setAttribute('data-balloon-visible', 'true')
-                  label.setAttribute('aria-label', textarea.getAttribute('validation-message'))
-                  label.setAttribute('data-balloon-pos', textarea.hasAttribute('reverse') ? 'down' : 'up')
-                }
-              }
-              this.validateFunctions.push(changeListener)
-              textarea.changeListener = changeListener
-              textarea.addEventListener('blur', changeListener)
-              textarea.addEventListener('blur', event => {
-                textarea.addEventListener('change', changeListener)
-                textarea.addEventListener('keyup', changeListener)
-              }, { once: true })
-            }
-          });
+            this.inputAll
+                .filter(i => i.getAttribute('type') !== 'hidden').forEach(input => {
+                    this.inputFields.push(input)
+                    const label = this.root.querySelector(`label[for='${input.getAttribute('id')}']`) || this.root.querySelector(`label[for='${input.getAttribute('name')}']`)
+                    const description = this.getDescription(input)
+                    const aInput = new children[0][1](input, label, description, { mode: 'false', namespace: this.getAttribute('namespace-children') || this.getAttribute('namespace') || '', namespaceFallback: this.hasAttribute('namespace-fallback-children') || this.hasAttribute('namespace-fallback') })
+                    aInput.setAttribute('type', input.getAttribute('type'))
+                    if (input.hasAttribute('reverse')) aInput.setAttribute('reverse', input.getAttribute('reverse'))
+                    input.replaceWith(aInput)
+                    if (input.hasAttribute('validation-message')) {
+                        const changeListener = event => {
+                            if (input.hasAttribute('valid') ? input.getAttribute('valid') === 'true' : input.validity.valid) {
+                                label.removeAttribute('data-balloon-visible')
+                                label.removeAttribute('aria-label')
+                                label.removeAttribute('data-balloon-pos')
+                            } else {
+                                label.setAttribute('data-balloon-visible', 'true')
+                                label.setAttribute('aria-label', input.getAttribute('validation-message'))
+                                label.setAttribute('data-balloon-pos', input.hasAttribute('reverse') ? 'down' : 'up')
+                            }
+                        }
+                        this.validateFunctions.push(changeListener)
+                        input.changeListener = changeListener
+                        input.addEventListener('blur', changeListener)
+                        input.addEventListener('blur', event => {
+                            input.addEventListener('change', changeListener)
+                            input.addEventListener('keyup', changeListener)
+                        }, { once: true })
+                    }
+                })
+            // spam protection
+            // if (this.getAttribute('type') === 'newsletter') {
+            //   this.emptyInput = document.createElement('input')
+            //   this.emptyInput.type = 'text'
+            //   this.emptyInput.id = 'oceans'
+            //   this.form.appendChild(this.emptyInput)
+            // }
+            Array.from(this.root.querySelectorAll('textarea')).forEach(textarea => {
+                this.textAreas.push(textarea)
+                const label = this.root.querySelector(`label[for='${textarea.getAttribute('id')}']`)
+                const aTextArea = new children[2][1](textarea, label, { mode: 'false', namespace: this.getAttribute('namespace-children') || this.getAttribute('namespace') || '' })
 
-          Array.from(this.root.querySelectorAll('button')).forEach(button => {
-            const aButton = new children[1][1](button, { namespace: this.getAttribute('namespace-children') || this.getAttribute('namespace') || '' })
-            button.replaceWith(aButton)
-          })
+                if (textarea.hasAttribute('reverse')) aTextArea.setAttribute('reverse', textarea.getAttribute('reverse'))
+                textarea.replaceWith(aTextArea)
+                if (textarea.hasAttribute('validation-message')) {
+                    const changeListener = event => {
+                        if (textarea.hasAttribute('valid') ? textarea.getAttribute('valid') === 'true' : textarea.validity.valid) {
+                            label.removeAttribute('data-balloon-visible')
+                            label.removeAttribute('aria-label')
+                            label.removeAttribute('data-balloon-pos')
+                        } else {
+                            label.setAttribute('data-balloon-visible', 'true')
+                            label.setAttribute('aria-label', textarea.getAttribute('validation-message'))
+                            label.setAttribute('data-balloon-pos', textarea.hasAttribute('reverse') ? 'down' : 'up')
+                        }
+                    }
+                    this.validateFunctions.push(changeListener)
+                    textarea.changeListener = changeListener
+                    textarea.addEventListener('blur', changeListener)
+                    textarea.addEventListener('blur', event => {
+                        textarea.addEventListener('change', changeListener)
+                        textarea.addEventListener('keyup', changeListener)
+                    }, { once: true })
+                }
+            });
+
+            Array.from(this.root.querySelectorAll('button')).forEach(button => {
+                const aButton = new children[1][1](button, { namespace: this.getAttribute('namespace-children') || this.getAttribute('namespace') || '' })
+                button.replaceWith(aButton)
+            })
+
+            this.hasRendered = true
         })
-      }
+    }
 
 
-    loadChildComponents(){
+    loadChildComponents() {
         if (this.childComponentsPromise) return this.childComponentsPromise
         let inputPromise
         try {
-          inputPromise = Promise.resolve({ default: Input })
+            inputPromise = Promise.resolve({ default: Input })
         } catch (error) {
-          inputPromise = import('../web-components-cms-template/src/es/components/atoms/Input.js')
+            inputPromise = import('../web-components-cms-template/src/es/components/atoms/Input.js')
         }
         let buttonPromise
         try {
-          buttonPromise = Promise.resolve({ default: Button })
+            buttonPromise = Promise.resolve({ default: Button })
         } catch (error) {
-          buttonPromise = import('../web-components-cms-template/src/es/components/atoms/Button.js')
+            buttonPromise = import('../web-components-cms-template/src/es/components/atoms/Button.js')
         }
         let textareaPromise
         try {
             textareaPromise = Promise.resolve({ default: TextArea })
-          } catch (error) {
+        } catch (error) {
             textareaPromise = import('../atoms/TextArea.js')
-          }
+        }
         return (this.childComponentsPromise = Promise.all([
-          inputPromise.then(
-            /** @returns {[string, CustomElementConstructor]} */
-            module => ['a-input', module.default]
-          ),
-          buttonPromise.then(
-            /** @returns {[string, CustomElementConstructor]} */
-            module => ['a-button', module.default]
-          ), 
-          textareaPromise.then(
-            /** @returns {[string, CustomElementConstructor]} */
-            module => ['a-text-area', module.default]
-          ),
+            inputPromise.then(
+                /** @returns {[string, CustomElementConstructor]} */
+                module => ['a-input', module.default]
+            ),
+            buttonPromise.then(
+                /** @returns {[string, CustomElementConstructor]} */
+                module => ['a-button', module.default]
+            ),
+            textareaPromise.then(
+                /** @returns {[string, CustomElementConstructor]} */
+                module => ['a-text-area', module.default]
+            ),
         ]).then(elements => {
-          elements.forEach(element => {
-            // don't define already existing customElements
-            // @ts-ignore
-            if (!customElements.get(element[0])) customElements.define(...element)
-          })
-          return elements
+            elements.forEach(element => {
+                // don't define already existing customElements
+                // @ts-ignore
+                if (!customElements.get(element[0])) customElements.define(...element)
+            })
+            return elements
         }))
-        
+
     }
 
 
-  getAllInputValues (form) {
-    if (form) {
-      const formData = new FormData();
-      [...this.root.querySelectorAll(`input${this.getAttribute('type') !== 'newsletter' ? ', a-input' : ''}`)].forEach(i => {
-        if ((this.getAttribute('type') !== 'newsletter' || i.id !== 'Policy') &&
-            (i.getAttribute('type') !== 'radio' || i.checked) &&
-            (i.getAttribute('type') !== 'checkbox' || i.checked)) formData.append(i.getAttribute('name'), i.value || i.getAttribute('value'))
-      });
-      [...this.root.querySelectorAll(`textarea${this.getAttribute('type') !== 'newsletter' ? ', a-text-area' : ''}`)].forEach(i => {
-        formData.append(i.getAttribute('name'), i.value || i.getAttribute('value'))
-      });
-      [...this.root.querySelectorAll(`select${this.getAttribute('type') !== 'newsletter' ? ', a-select' : ''}`)].forEach(i =>
-        formData.append(i.getAttribute('name'), i.options[i.selectedIndex].text)
-      )
-      return formData
+    getAllInputValues(form) {
+        if (form) {
+            const formData = new FormData();
+            [...this.root.querySelectorAll(`input${this.getAttribute('type') !== 'newsletter' ? ', a-input' : ''}`)].forEach(i => {
+                if ((this.getAttribute('type') !== 'newsletter' || i.id !== 'Policy') &&
+                    (i.getAttribute('type') !== 'radio' || i.checked) &&
+                    (i.getAttribute('type') !== 'checkbox' || i.checked)) formData.append(i.getAttribute('name'), i.value || i.getAttribute('value'))
+            });
+            [...this.root.querySelectorAll(`textarea${this.getAttribute('type') !== 'newsletter' ? ', a-text-area' : ''}`)].forEach(i => {
+                formData.append(i.getAttribute('name'), i.value || i.getAttribute('value'))
+            });
+            [...this.root.querySelectorAll(`select${this.getAttribute('type') !== 'newsletter' ? ', a-select' : ''}`)].forEach(i =>
+                formData.append(i.getAttribute('name'), i.options[i.selectedIndex].text)
+            )
+            return formData
+        }
+        return new FormData()
     }
-    return new FormData()
-  }
 
 }
 
