@@ -345,4 +345,17 @@ html {
     --video-margin: 70px auto 0 auto;
     --video-width: var(--picture-width);
     --contactform-background-color: #fff;
+    --search-svg-size: 1em;
+    --search-search-input-padding: 0.25em;
+    --search-search-input-border-color: var(--navigation-color);
+    --search-input-color: var(--navigation-color);
+    --search-input-placeholder-color: var(--navigation-color);
+    --search-icon-color: var(--navigation-color);
+    --search-icon-color-hover: var(--navigation-color);
+    --search-border-focus: 1px solid var(--navigation-color) !important;
+    --search-border-color-focus: var(--navigation-color);
+    --search-border-hover: 1px solid var(--navigation-color) !important;
+    --search-border-color-hover: var(--navigation-color);
+    --button-primary-background-color-hover-custom: red;
+    --button-primary-background-color-custom: yellow;
 }
