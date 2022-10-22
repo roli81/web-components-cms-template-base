@@ -13,7 +13,7 @@ import Style from './Style.js'
  * @type {CustomElementConstructor}
  * @attribute {}
  * @css {
- *  Note: all of src/es/components/web-components-cms-template/src/es/components/organisms/Body.js
+ *  Note: all of src/es/components/ web-components-toolbox/src/es/components/organisms/Body.js
  * }
  */
 export default class Badge extends Style {

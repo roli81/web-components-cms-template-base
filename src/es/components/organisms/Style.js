@@ -14,7 +14,7 @@ import Body from './Body.js'
  *  {string} [background-color=n.a.]
  * }
  * @css {
- *  Note: all of src/es/components/web-components-cms-template/src/es/components/organisms/Body.js
+ *  Note: all of src/es/components/ web-components-toolbox/src/es/components/organisms/Body.js
  * }
  */
 export default class Style extends Body {

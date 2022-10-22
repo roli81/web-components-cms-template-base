@@ -1,4 +1,4 @@
-import { Shadow } from '../web-components-cms-template/src/es/components/prototypes/Shadow.js'
+import { Shadow } from '../web-components-toolbox/src/es/components/prototypes/Shadow.js'
 
 
 
@@ -288,7 +288,7 @@ export default class FlipTile extends Shadow() {
         try {
             cardFrontPromise = Promise.resolve({ default: Picture });
         } catch (error) {
-            cardFrontPromise = import('../web-components-cms-template/src/es/components/atoms/Picture.js');
+            cardFrontPromise = import('../web-components-toolbox/src/es/components/atoms/picture/Picture.js');
         }
 
         return (this.childComponentsPromise = Promise.all([

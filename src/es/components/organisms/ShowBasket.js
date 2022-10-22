@@ -1,4 +1,4 @@
-import { Shadow } from '../web-components-cms-template/src/es/components/prototypes/Shadow.js';
+import { Shadow } from '../web-components-toolbox/src/es/components/prototypes/Shadow.js';
 
 
 export default class ShowBasket extends Shadow () {

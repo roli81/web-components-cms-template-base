@@ -1,5 +1,5 @@
 // @ts-check
-import BaseBody from '../web-components-cms-template/src/es/components/organisms/Body.js'
+import BaseBody from '../web-components-toolbox/src/es/components/organisms/body/Body.js'
 
 /* global self */
 

@@ -1,4 +1,4 @@
-import { Shadow } from '../web-components-cms-template/src/es/components/prototypes/Shadow.js'
+import { Shadow } from '../web-components-toolbox/src/es/components/prototypes/Shadow.js'
 
 
 export default class CaptchaSubmitButton extends Shadow() {
@@ -123,7 +123,7 @@ export default class CaptchaSubmitButton extends Shadow() {
             this.validateCaptcha()
                 .then(() => {
                     if (this.valid) {
-                        this.dispatchEvent(new CustomEvent('form-submit', { bubbles: true, cancelable: false, composed: true }));
+                        this.dispatchEvent(new CustomEvent('submit-form', { bubbles: true, cancelable: false, composed: true }));
                         this.errorMessage.innerText = '';
                     } else {
                         this.dispatchEvent(new CustomEvent('captcha-failed', { bubbles: true, cancelable: false, composed: true }));
