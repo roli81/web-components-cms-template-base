@@ -16,19 +16,15 @@ export default class CaptchaSubmitButton extends Shadow() {
             <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
         </svg>`;
         this.valid = true;
+        this.apiPath = this.getAttribute('apiPath') ? this.getAttribute('apiPath').endsWith('/') ? this.getAttribute('apiPath') : this.getAttribute('apiPath') + '/': '/umbraco/api/captcha/';
+        this.corsMode = this.getAttribute('corsMode') ? this.getAttribute('corsMode') : 'same-origin';
     }
 
     connectedCallback() {
-
         if (!this.hasFetched) {
-           this.getCaptcha();
-           this.hasFetched = true;
+            this.getCaptcha();
+            this.hasFetched = true;
         }
-
-
-        //if (this.shouldComponentRenderHTML()) this.renderHtml();
-
-
     }
 
     disconnectedCallback() {
@@ -37,18 +33,16 @@ export default class CaptchaSubmitButton extends Shadow() {
 
 
     refreshCaptcha() {
-
         return new Promise((resolve, reject) => {
-            fetch(`/umbraco/api/captcha/RefreshCaptcha?id=${this.id}`, { mode: 'same-origin' })
-            .then(response => response.json())
-            .then(newImage => {
-                this.captchaImage.setAttribute('src', newImage.image);
-                this.html = this.wrapper;
-                resolve();
-            })
-            .catch(error => reject(error));
+            fetch(`${this.apiPath}RefreshCaptcha?id=${this.id}`, { mode: this.corsMode })
+                .then(response => response.json())
+                .then(newImage => {
+                    this.captchaImage.setAttribute('src', newImage.image);
+                    this.html = this.wrapper;
+                    resolve();
+                })
+                .catch(error => reject(error));
         })
-
     }
 
 
@@ -56,35 +50,29 @@ export default class CaptchaSubmitButton extends Shadow() {
         const captchaReq = {
             id: this.id,
             text: this.input.value
-          };
+        };
 
-
-return new Promise((resolve, reject) => {
-    fetch('/umbraco/api/captcha/validatecaptcha', {
-        method: 'POST',
-        mode: 'same-origin',
-        cache: 'no-cache',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(captchaReq)
-
-    })
-        .then(response => {
-            return response.text()
-        }).then(captchaValid => {
-            if (captchaValid === 'false') {
-                this.valid = false;
-            } else {
-                this.valid = true; 
-            }
-
-            
-            resolve();
-        }).catch(error => { reject(error)});
-})
-
-
+        return new Promise((resolve, reject) => {
+            fetch(`${this.apiPath}validatecaptcha`, {
+                method: 'POST',
+                mode: this.corsMode,
+                cache: 'no-cache',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(captchaReq)
+            })
+                .then(response => {
+                    return response.text()
+                }).then(captchaValid => {
+                    if (captchaValid === 'false') {
+                        this.valid = false;
+                    } else {
+                        this.valid = true;
+                    }
+                    resolve();
+                }).catch(error => { reject(error) });
+        })
     }
 
 
@@ -103,15 +91,8 @@ return new Promise((resolve, reject) => {
             this.refreshCaptcha();
         });
         this.wrapper.appendChild(this.button);
-        
-        
-            this.errorMessage = document.createElement('div');
-            this.wrapper.appendChild(this.errorMessage);   
-        
-  
-        
-       
-
+        this.errorMessage = document.createElement('div');
+        this.wrapper.appendChild(this.errorMessage);
         this.inputDiv = document.createElement('div');
         this.input = document.createElement('input');
         this.input.setAttribute('type', 'text');
@@ -127,8 +108,7 @@ return new Promise((resolve, reject) => {
                             this.dispatchEvent(new CustomEvent('captcha-failed', { bubbles: true, cancelable: false, composed: true }));
                             this.errorMessage.innerText = 'Bitte gib den richtigen Code ein!';
                         }
-                        
-                    }); 
+                    });
             }
         });
         this.inputDiv.appendChild(this.input);
@@ -141,7 +121,7 @@ return new Promise((resolve, reject) => {
         this.submitButton.addEventListener('click', (event) => {
             event.preventDefault();
             this.validateCaptcha()
-                .then(() =>{
+                .then(() => {
                     if (this.valid) {
                         this.dispatchEvent(new CustomEvent('form-submit', { bubbles: true, cancelable: false, composed: true }));
                         this.errorMessage.innerText = '';
@@ -150,18 +130,16 @@ return new Promise((resolve, reject) => {
                         this.errorMessage.innerText = 'Bitte gib den richtigen Code ein!';
                     }
                 });
-
         });
         this.submitDiv.appendChild(this.submitButton);
         this.wrapper.appendChild(this.submitDiv);
-
         this.html = this.wrapper;
     }
 
 
     getCaptcha() {
         return new Promise((res, rej) => {
-            fetch('https://localhost:44391/umbraco/api/captcha/getcaptchaimage', { mode: 'cors' })
+            fetch(`${this.apiPath}getcaptchaimage`, { mode: this.corsMode })
                 .then((response) => response.json())
                 .then((data) => {
                     if (this.shouldComponentRenderHTML()) {
@@ -174,7 +152,7 @@ return new Promise((resolve, reject) => {
         });
     }
 
-    
+
     shouldComponentRenderHTML() {
         return !this.wrapper;
     }
