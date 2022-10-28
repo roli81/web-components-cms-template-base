@@ -171,42 +171,42 @@
   [
     {
       selector: 'a-',
-      url: 'atoms/',
+          url: 'web-components-toolbox/src/es/components/atoms/',
       separateFolder: true
     },
     {
       selector: 'c-',
-      url: 'controllers/',
+        url: 'web-components-toolbox/src/es/components/controllers/',
       separateFolder: true
     },
     {
       selector: 'm-',
-      url: 'molecules/',
+        url: 'web-components-toolbox/src/es/components/molecules/',
       separateFolder: true
     },
     {
       selector: 'msrc-',
-      url: 'msrc/',
+        url: 'web-components-toolbox/src/es/components/msrc/',
       separateFolder: true
     },
     {
       selector: 'contentful-',
-      url: 'contentful/',
+        url: 'web-components-toolbox/src/es/components/contentful/',
       separateFolder: true
     },
     {
       selector: 'o-',
-      url: 'organisms/',
+        url: 'web-components-toolbox/src/es/components/organisms/',
       separateFolder: true
     },
     {
       selector: 'p-',
-      url: 'pages/',
+        url: 'web-components-toolbox/src/es/components/pages/',
       separateFolder: true
     },
     {
       selector: 'third-party-',
-      url: 'thirdParty/',
+        url: 'web-components-toolbox/src/es/components/thirdParty/',
       separateFolder: true
     },
     {

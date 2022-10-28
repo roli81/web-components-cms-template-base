@@ -358,4 +358,6 @@ html {
     --search-border-color-hover: var(--navigation-color);
     --button-primary-background-color-hover-custom: red;
     --button-primary-background-color-custom: yellow;
+    --navigation-color-open-mobile: #c8c8c8;
+    --header-header-position: sticky;
 }
